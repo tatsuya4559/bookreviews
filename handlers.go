@@ -4,18 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
-	"go.uber.org/dig"
 )
-
-var container *dig.Container
-
-func BuildContainer() {
-	container = dig.New()
-
-	container.Provide(InitializeDB)
-	container.Provide(NewBookRepository)
-}
 
 func booksIndex(w http.ResponseWriter, r *http.Request) {
 	container.Invoke(func(repo BookRepository) {
