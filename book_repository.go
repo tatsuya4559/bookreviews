@@ -10,7 +10,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func InjectDB() *sqlx.DB {
+func InitializeDB() *sqlx.DB {
 	db, err := sqlx.Open("sqlite3", os.Getenv("DATABASE"))
 	if err != nil {
 		log.Fatal(err)
@@ -38,7 +38,7 @@ func newMockBookRepo() BookRepository {
 }
 
 func (r *mockBookRepository) AllBooks() ([]*models.Book, error) {
-	bks := make([]*models.Book, len(r.store))
+	bks := make([]*models.Book, 0)
 	for _, v := range r.store {
 		bks = append(bks, v)
 	}
@@ -63,8 +63,4 @@ func (r *bookRepository) AllBooks() ([]*models.Book, error) {
 
 func NewBookRepository(db *sqlx.DB) BookRepository {
 	return &bookRepository{db: db}
-}
-
-func InjectBookRepo() BookRepository {
-	return NewBookRepository(InjectDB())
 }

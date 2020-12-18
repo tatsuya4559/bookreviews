@@ -5,11 +5,11 @@ import (
 )
 
 type Book struct {
-	ISBN      string
+	ISBN      uint
 	Title     string
 	Publisher string
 }
 
 func (b *Book) String() string {
-	return fmt.Sprintf("%s, %s, %s", b.ISBN, b.Title, b.Publisher)
+	return fmt.Sprintf("%d, %s, %s", b.ISBN, b.Title, b.Publisher)
 }
