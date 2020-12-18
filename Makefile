@@ -10,3 +10,7 @@ down:
 .PHONY: status
 status:
 	goose -dir ./migrations sqlite3 ./dev.db status
+
+.PHONY: run
+run:
+	go run cmd/main.go
