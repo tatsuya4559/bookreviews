@@ -1,3 +1,5 @@
+.envrc
+
 dev.db
 test_data.sql
 
