@@ -6,7 +6,7 @@ import (
 )
 
 type BookRepository interface {
-	AllBooks() ([]*models.Book, error)
+	All() ([]*models.Book, error)
 }
 
 /***************************************************************/
@@ -19,7 +19,7 @@ func newMockBookRepo() BookRepository {
 	return &mockBookRepository{store}
 }
 
-func (r *mockBookRepository) AllBooks() ([]*models.Book, error) {
+func (r *mockBookRepository) All() ([]*models.Book, error) {
 	bks := make([]*models.Book, 0)
 	for _, v := range r.store {
 		bks = append(bks, v)
@@ -32,7 +32,7 @@ type bookRepository struct {
 	db *sqlx.DB
 }
 
-func (r *bookRepository) AllBooks() ([]*models.Book, error) {
+func (r *bookRepository) All() ([]*models.Book, error) {
 	bks := make([]*models.Book, 0)
 
 	err := r.db.Select(&bks, `SELECT * FROM book`)

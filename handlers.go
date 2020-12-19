@@ -23,7 +23,7 @@ func booksIndex(w http.ResponseWriter, r *http.Request) {
 		// ここでサービス層がDIされてきたりするけど、
 		// それは別途テストされているからハンドラのテストではない
 		// もう１階層あるとありがたみが分かる
-		bks, err := repo.AllBooks()
+		bks, err := repo.All()
 		if err != nil {
 			log.Println(err)
 			http.Error(w, http.StatusText(500), 500)
