@@ -16,3 +16,12 @@ func BuildContainer() {
 
 	container.Provide(NewBookRepository)
 }
+
+func Invoke(function interface{}) {
+	// 中身のクロージャが値を返すように作るつもりは無いけど
+	// 型定義で縛れないので一応戻り値を見ておく
+	err := container.Invoke(function)
+	if err != nil {
+		panic(err)
+	}
+}
