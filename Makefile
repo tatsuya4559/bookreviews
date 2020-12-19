@@ -1,15 +1,15 @@
 # `goose create <filename> sql` will create new migration file
 .PHONY: up
 up:
-	goose -dir ./migrations sqlite3 ./dev.db up
+	goose -dir ./migrations postgres "${DATABASE}" up
 
 .PHONY: down
 down:
-	goose -dir ./migrations sqlite3 ./dev.db down
+	goose -dir ./migrations postgres "${DATABASE}" down
 
 .PHONY: status
 status:
-	goose -dir ./migrations sqlite3 ./dev.db status
+	goose -dir ./migrations postgres "${DATABASE}" status
 
 .PHONY: run
 run:
